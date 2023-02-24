@@ -105,9 +105,9 @@ function DashboardPage () {
         <div>
         {cars.map((cars, idx) => (
             <div key={idx} className='dashgrid'>
-                <div className='tabletitle1'>Country</div>
-                <div className='tabletitle2'>Brand</div>
-                <div className='nation'>{cty[idx]}. ({carcount[idx]} Brands.)</div>
+                <div className='tabletitle1'>COUNTRY</div>
+                <div className='tabletitle2'>BRANDS</div>
+                <div className='nation'>{cty[idx].toUpperCase()}. ({carcount[idx]} Brands.)</div>
                 <div className='cars'>
                     {cars.map((car,idx2) => (
                         <div key={idx2} >
