@@ -1,0 +1,20 @@
+import './App.css';
+import { BrowserRouter as Routes, Route, Router } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import UserProvider from "./store/context"
+
+class RootApp extends React.Component {
+    render() {
+        return (
+            <Routes>
+                <UserProvider>
+                    <App />
+                </UserProvider>
+            </Routes>
+        );
+    }
+}
+
+ReactDOM.hydrate(<RootApp />, document.getElementById('root'));
