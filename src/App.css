@@ -519,6 +519,7 @@
   max-height: 20%;
   font-size: 24px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .tabletitle1{
