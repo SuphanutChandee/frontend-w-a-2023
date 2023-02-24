@@ -497,8 +497,8 @@
   padding-bottom: 2%;
 
   background-color: #fff;
-  -webkit-animation: random2 5s infinite;
-  animation: random2 5s infinite;
+  -webkit-animation: random2 20s infinite;
+  animation: random2 20s infinite;
 }
 @keyframes  random2 {
   15% { background-color: rgb(238, 190, 255); } 
