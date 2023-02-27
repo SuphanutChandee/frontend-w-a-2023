@@ -4,7 +4,8 @@ function LoginPage () {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [drop, setDrop] = useState(false);
+    const [drope, setDrope] = useState(false);
+    const [dropp, setDropp] = useState(false);
     const userE = JSON.parse(localStorage.getItem('userE') || '{}');
     const userP = JSON.parse(localStorage.getItem('userP') || '{}');
 
@@ -20,7 +21,7 @@ function LoginPage () {
     function handleSubmit(){
         let check = [0, 0];
         if(userE?.includes(email)) check[0] = 1;
-        if(userP?.includes(password)) check[1] = 1;
+        if(userP[userE.indexOf(email)] == password) check[1] = 1;
 
         //console.log(userE?.includes(email));
         //console.log(userP?.includes(password));
@@ -29,8 +30,15 @@ function LoginPage () {
             alert(validate);
             window.location.href="/dashboard"
         }
-        else{
-            setDrop(true);
+        else if(check[0] == 1) {
+            setDropp(true);
+        }
+        else if(check[1] == 1) {
+            setDrope(true);
+        }
+        else {
+            setDrope(true);
+            setDropp(true);
         }
     }
 
@@ -39,14 +47,14 @@ function LoginPage () {
             <h1>Login</h1>
             <div className='email'>Email</div>
             <input type="text" className='emailframe' onChange={e=> setEmail(e.currentTarget.value)}/>
-            { drop ?(
+            { drope ?(
                 <div className='validate'>
                     Your Email is incorrect. please try again.
                 </div>
             ) : null}
             <div className='password'>Password</div>
             <input type="password" className='passwordframe' onChange={e=> setPassword(e.currentTarget.value)}/>
-            { drop ?(
+            { dropp ?(
                 <div className='validate'>
                     Your Password is incorrect. please try again.
                 </div>
