@@ -30,10 +30,10 @@ function LoginPage () {
             alert(validate);
             window.location.href="/dashboard"
         }
-        else if(check[0] == 1) {
+        else if(email != "" && check[0] == 1) {
             setDropp(true);
         }
-        else if(check[1] == 1) {
+        else if(email != "" && check[1] == 1) {
             setDrope(true);
         }
         else {
