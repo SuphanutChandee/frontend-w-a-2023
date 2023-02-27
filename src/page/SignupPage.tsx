@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, createContext, useContext } from 'react
 import { useUserContext } from '../store/context';
 
 function SignupPage () {
-    const context = useUserContext();
+    const { user, userAction } = useUserContext();
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -11,25 +11,28 @@ function SignupPage () {
     const [evalid, setEvalid] = useState("");
     const [pvalid, setPvalid] = useState("");
 
-    localStorage.setItem("UserEmail", JSON.stringify(context.user.email));
-    localStorage.setItem("UserPassword", JSON.stringify(context.user.password));
+    //localStorage.setItem("UserEmail", JSON.stringify(user.email));
+    //localStorage.setItem("UserPassword", JSON.stringify(user.password));
 
     function handleSubmit(){
+        //console.log("email");
         //console.log(email);
+        //console.log("password");
         //console.log(password);
-        /*
-        console.log("email");
-        console.log(email);
-        console.log("password");
-        console.log(password);
-        */
         //alert("email is [" + email + "], password is [" + password + "]");
-        let Evalidate = "This Email is invalid.\n", Pvalidate = "Password must Have ";
+        let Evalidate = "", Pvalidate = "Password must Have ";
         let validate = ""
 
-        if(email.includes('@') && email.includes('.')) {}
+        if (user.email.includes(email)) {
+            //console.log(user.email)
+            setEdrop(true);
+            Evalidate = "This Email is already used.\n";
+            validate = validate + Evalidate;
+        }
+        else if(email.includes('@') && email.includes('.')) {}
         else {
             setEdrop(true);
+            Evalidate = "This Email is invalid.\n";
             validate = validate + Evalidate;
         }
 
@@ -58,16 +61,16 @@ function SignupPage () {
         setPvalid(Pvalidate);
 
         if(validate == "") {
-            console.log(email);
-            console.log(password)
-            context.userAction(email, password);
+            //console.log(email);
+            //console.log(password)
+            userAction(email, password);
             validate = "Signup Successful"
             alert(validate);
             window.location.href="/dashboard"
         }
         
     }
-    console.log(context.user)
+    //console.log(user)
 
     return (
         <div className='SnLframe'>

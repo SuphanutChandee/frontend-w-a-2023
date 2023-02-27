@@ -4,16 +4,16 @@ function LoginPage () {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [ta, setTa] = useState([]);
     const [drop, setDrop] = useState(false);
-    const valid = "Your Email or Password is incorrect. please try again.";
-    const userE = localStorage.getItem("UserEmail")?.replace("[","")?.replace("]","")?.replace(/"/g,"")?.split(",");
-    const userP = localStorage.getItem("UserPassword")?.replace("[","")?.replace("]","")?.replace(/"/g,"")?.split(",");
+    const userE = JSON.parse(localStorage.getItem('userE') || '{}');
+    const userP = JSON.parse(localStorage.getItem('userP') || '{}');
+
+    //console.log(userE);
 
     /*
     useEffect(() => {
-        console.log(userE);
-        console.log(userP);
+        //console.log(userE);
+        //console.log(userP);
         //if (temp2?.includes(email))
     },[]);*/
 
@@ -24,7 +24,7 @@ function LoginPage () {
 
         //console.log(userE?.includes(email));
         //console.log(userP?.includes(password));
-        if(check[0] == 1 && check[1] == 1){
+        if(email != "" && check[0] == 1 && check[1] == 1){
             let validate = "Login Successful"
             alert(validate);
             window.location.href="/dashboard"
@@ -41,14 +41,14 @@ function LoginPage () {
             <input type="text" className='emailframe' onChange={e=> setEmail(e.currentTarget.value)}/>
             { drop ?(
                 <div className='validate'>
-                    {valid}
+                    Your Email is incorrect. please try again.
                 </div>
             ) : null}
             <div className='password'>Password</div>
             <input type="password" className='passwordframe' onChange={e=> setPassword(e.currentTarget.value)}/>
             { drop ?(
                 <div className='validate'>
-                    {valid}
+                    Your Password is incorrect. please try again.
                 </div>
             ) : null}
             <input type="submit" className='submit' onClick={e=> handleSubmit()} />
