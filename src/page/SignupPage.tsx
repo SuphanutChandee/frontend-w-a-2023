@@ -23,7 +23,12 @@ function SignupPage () {
         let Evalidate = "", Pvalidate = "Password must Have ";
         let validate = ""
 
-        if (user.email.includes(email)) {
+        if (email == ""){
+            setEdrop(true);
+            Evalidate = "This Email is invalid.\n";
+            validate = validate + Evalidate;
+        }
+        else if (user.email.includes(email)) {
             //console.log(user.email)
             setEdrop(true);
             Evalidate = "This Email is already used.\n";
